@@ -10,7 +10,7 @@ export const heapSort = (state) => {
     heap_sort(arr);
 
 }
-const max_heapify= (n,i,arr) => {
+const max_heapify= (n,i,arr,history) => {
     var largest=i;
     var l=2*i+1;
     var r=2*i+2;
@@ -20,11 +20,21 @@ const max_heapify= (n,i,arr) => {
         if(largest!=i)
         {
             arr[largest].color = '#293451';
+            history.push(
+                arr.map( obj => {
+                    return {...obj}
+                })
+            );
         }
 
         largest=l;
 
         arr[largest].color = '#DC143C';
+        history.push(
+            arr.map( obj => {
+                return {...obj}
+            })
+        );
     }
 
     if(r<n && arr[r].value>arr[largest].value)
@@ -32,11 +42,21 @@ const max_heapify= (n,i,arr) => {
         if(largest!=i)
         {
             arr[largest].color = '#293451';
+            history.push(
+                arr.map( obj => {
+                    return {...obj}
+                })
+            );
         }
 
         largest=r;
 
         arr[largest].color = '#DC143C';
+        history.push(
+            arr.map( obj => {
+                return {...obj}
+            })
+        );
     }
 
     if(largest!==i)
@@ -46,7 +66,7 @@ const max_heapify= (n,i,arr) => {
         max_heapify(n,largest);
     }
     }
-    const swap =(i,j,arr) => {
+    const swap =(i,j,arr,history) => {
         var temp=arr[i];
         arr[i]=arr[j];
         arr[j]=temp;

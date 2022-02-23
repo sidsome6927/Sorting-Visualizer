@@ -1,55 +1,63 @@
 export const heapSort = (state) => {
-    heap_sort(state);
+    let history = [];
+    const arr = state.map((objarr) => objarr);
+
+    history.push(
+        arr.map( obj => {
+            return {...obj}
+        })
+    );
+    heap_sort(arr);
 
 }
-const heapify = (n,i) => {
+const max_heapify= (n,i,arr) => {
     var largest=i;
     var l=2*i+1;
     var r=2*i+2;
 
-    if(l<n && div_sizes[l]>div_sizes[largest])
+    if(l<n && arr[l].value>arr[largest].value)
     {
         if(largest!=i)
         {
-            div_update(divs[largest],div_sizes[largest],"blue");//Color update
+            arr[largest].color = '#293451';
         }
 
         largest=l;
 
-        div_update(divs[largest],div_sizes[largest],"red");//Color update
+        arr[largest].color = '#DC143C';
     }
 
-    if(r<n && div_sizes[r]>div_sizes[largest])
+    if(r<n && arr[r].value>arr[largest].value)
     {
         if(largest!=i)
         {
-            div_update(divs[largest],div_sizes[largest],"blue");//Color update
+            arr[largest].color = '#293451';
         }
 
         largest=r;
 
-        div_update(divs[largest],div_sizes[largest],"red");//Color update
+        arr[largest].color = '#DC143C';
     }
 
-    if(largest!=i)
+    if(largest!==i)
     {
         swap(i,largest);
 
         max_heapify(n,largest);
     }
     }
-    const swap =(i,j) => {
-        var temp=div_sizes[i];
-        div_sizes[i]=div_sizes[j];
-        div_sizes[j]=temp;
+    const swap =(i,j,arr) => {
+        var temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
     }
-    const heap_sort = () => {
-    for(var i=Math.floor(array_size/2)-1;i>=0;i--)
+    const heap_sort = (arr) => {
+    for(var i=Math.floor(arr.size/2)-1;i>=0;i--)
     {
-        max_heapify(array_size,i);
+        max_heapify(arr.size,i);
     }
 
-    for(var i=array_size-1;i>0;i--)
+    for(var i=arr.size-1;i>0;i--)
     {
         swap(0,i);
         max_heapify(i,0);

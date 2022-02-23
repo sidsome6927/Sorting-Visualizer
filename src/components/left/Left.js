@@ -4,6 +4,9 @@ import {insertionSort} from '../../Algorithms/insertion-sort'
 import {mergeSort} from '../../Algorithms/merge-sort'
 import {quickSort} from '../../Algorithms/quick-sort'
 import { bubbleSort } from '../../Algorithms/bubbe-sort';
+import {selectionSort} from '../../Algorithms/selection-sort';
+import {heapSort} from '../../Algorithms/heap-sort';
+
 
 
 function Left(
@@ -45,6 +48,16 @@ const handleClick = () => {
         }
         case "BubbleSort" : {
             sethistory(bubbleSort(state))
+            setplaying(true)
+            break;
+        }
+        case "SelectionSort" : {
+            sethistory(selectionSort(state))
+            setplaying(true);
+            break;
+        }
+        case "HeapSort" : {
+            sethistory(heapSort(state))
             setplaying(true)
             break;
         }
@@ -92,6 +105,8 @@ function handleSpeedChange(event){
                        <option value="InsertionSort">Insertion Sort</option>
                        <option value="MergeSort">Merge Sort</option>
                        <option value="QuickSort">Quick Sort</option>
+                       <option value="SelectionSort">Selection Sort</option>
+                       <option value="HeapSort">Heap Sort</option>
                      </select>
                 </div>
 

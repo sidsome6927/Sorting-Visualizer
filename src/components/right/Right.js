@@ -25,7 +25,6 @@ function Right({state,size}) {
                         }
                         key={index}
                     >
-                      {/* {`${obj.value}`}  */}
                      </div>
                 )
                 )}
